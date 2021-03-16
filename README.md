@@ -59,7 +59,7 @@ Please refer to [README.md](benchmarks/detection/README.md) for transferring to 
 
 ### Tips
 - After extracting the backbone weights, the model can be used to replace the original ImageNet pre-trained model as initialization for many dense prediction tasks. 
-- If your machine has a slow data loading issue, especially for ImageNet, your are suggested to convert ImageNet to lmdb format through [folder2lmdb_imagenet.py](tools/folder2lmdb_imagenet.py), and use this [config](configs/selfsup/densecl/densecl_imagenet_lmdb_200ep.py) for training. 
+- If your machine has a slow data loading issue, especially for ImageNet, your are suggested to convert ImageNet to lmdb format through [folder2lmdb_imagenet.py](tools/folder2lmdb_imagenet.py) or  [folder2lmdb_coco.py](tools/folder2lmdb_coco.py), and use this [config_imagenet](configs/selfsup/densecl/densecl_imagenet_lmdb_200ep.py) or [config_coco](configs/selfsup/densecl/densecl_coco_lmdb_800ep.py) for training. 
 
 ## Acknowledgement
 We would like to thank the [OpenSelfSup](https://github.com/open-mmlab/OpenSelfSup) for its open-source project and [PyContrast](https://github.com/HobbitLong/PyContrast) for its detection evaluation configs.
