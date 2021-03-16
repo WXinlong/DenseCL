@@ -135,7 +135,7 @@ def folder2lmdb(dpath, name="train", workers=32, write_frequency=5000):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description='ImageNet Folder to IMDB.')
+    parser = argparse.ArgumentParser(description='ImageNet Folder to LMDB.')
     parser.add_argument('--data-root', type=str,
                         default='/home/datasets/imagenet/',
                         help='the name of data root.')
