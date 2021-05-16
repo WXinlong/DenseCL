@@ -4,7 +4,7 @@ This project hosts the code for implementing the DenseCL algorithm for self-supe
 
 > [**Dense Contrastive Learning for Self-Supervised Visual Pre-Training**](https://arxiv.org/abs/2011.09157),  
 > Xinlong Wang, Rufeng Zhang, Chunhua Shen, Tao Kong, Lei Li   
-> In: Proc. IEEE Conf. Computer Vision and Pattern Recognition (CVPR), 2021  
+> In: Proc. IEEE Conf. Computer Vision and Pattern Recognition (CVPR), 2021, **Oral**  
 > *arXiv preprint ([arXiv 2011.09157](https://arxiv.org/abs/2011.09157))*   
 
 ![highlights2](highlights2.png)
@@ -18,6 +18,7 @@ This project hosts the code for implementing the DenseCL algorithm for self-supe
 ![highlights](highlights.png)
 
 ## Updates
+   - [Simple tutorial](https://github.com/aim-uofa/AdelaiDet/blob/master/configs/DenseCL/README.md) for using DenseCL in AdelaiDet (e.g., with SOLOv2 and FCOS) is provided. (05/16/2021)
    - Code and pre-trained models of DenseCL are released. (02/03/2021)
 
 
@@ -42,6 +43,25 @@ DenseCL | ImageNet | ResNet-101 | 200 | 4.3d | 61.3 | 74.1 | [download](https://
 - The training time is measured on 8 V100 GPUs.
 - See our paper for more results on different benchmarks.
 
+We also provide experiments of using DenseCL in AdelaiDet models, e.g., SOLOv2 and FCOS. Please refer to the [instructions](https://github.com/aim-uofa/AdelaiDet/blob/master/configs/DenseCL/README.md) for simple usage.
+
+- SOLOv2 on COCO Instance Segmentation
+
+pre-train method | pre-train dataset  |  mask AP | 
+--- |:---:|:---:|
+Supervised  | ImageNet | 35.2  
+MoCo-v2  | ImageNet | 35.2
+DenseCL |  ImageNet | 35.7 (+0.5)
+
+- FCOS on COCO Object Detection
+
+pre-train method | pre-train dataset  |  box AP | 
+--- |:---:|:---:|
+Supervised   | ImageNet | 39.9
+MoCo-v2  | ImageNet | 40.3
+DenseCL |  ImageNet | 40.9 (+1.0)
+
+
 ## Usage
 
 ### Training
@@ -56,6 +76,7 @@ DenseCL | ImageNet | ResNet-101 | 200 | 4.3d | 61.3 | 74.1 | [download](https://
 
 ### Transferring to Object Detection and Segmentation
 Please refer to [README.md](benchmarks/detection/README.md) for transferring to object detection and semantic segmentation.
+Please refer to the [instructions](https://github.com/aim-uofa/AdelaiDet/blob/master/configs/DenseCL/README.md) for transferring to dense prediction models in AdelaiDet, e.g., SOLOv2 and FCOS.
 
 ### Tips
 - After extracting the backbone weights, the model can be used to replace the original ImageNet pre-trained model as initialization for many dense prediction tasks. 
