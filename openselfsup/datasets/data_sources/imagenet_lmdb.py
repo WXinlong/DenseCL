@@ -7,14 +7,15 @@ import pyarrow as pa
 
 import torch.utils.data as data
 from ..registry import DATASOURCES
+import pickle
 
 
-def loads_pyarrow(buf):
+def loads_data(buf):
     """
     Args:
         buf: the output of `dumps`.
     """
-    return pa.deserialize(buf)
+    return pickle.loads(buf)
 
 
 @DATASOURCES.register_module
@@ -36,8 +37,8 @@ class ImageNetLMDB(data.Dataset):
                              readonly=True, lock=False,
                              readahead=False, meminit=False)
         with self.env.begin(write=False) as txn:
-            self.length = loads_pyarrow(txn.get(b'__len__'))
-            self.keys = loads_pyarrow(txn.get(b'__keys__'))
+            self.length = loads_data(txn.get(b'__len__'))
+            self.keys = loads_data(txn.get(b'__keys__'))
 
     def __getitem__(self, index):
         # Delay loading LMDB data until after initialization: https://github.com/chainer/chainermn/issues/129
@@ -47,7 +48,7 @@ class ImageNetLMDB(data.Dataset):
         env = self.env
         with env.begin(write=False) as txn:
             byteflow = txn.get(self.keys[index])
-        unpacked = loads_pyarrow(byteflow)
+        unpacked = loads_data(byteflow)
 
         # load img.
         imgbuf = unpacked[0]

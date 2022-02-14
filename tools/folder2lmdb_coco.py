@@ -9,7 +9,7 @@ import json
 
 import torch.utils.data as data
 from torch.utils.data import DataLoader
-
+import pickle
 
 class COCODataset(data.Dataset):
     """
@@ -34,27 +34,19 @@ class COCODataset(data.Dataset):
         return img
 
 
-def loads_pyarrow(buf):
-    """
-    Args:
-        buf: the output of `dumps`.
-    """
-    return pa.deserialize(buf)
-
-
 def raw_reader(path):
     with open(path, 'rb') as f:
         bin_data = f.read()
     return bin_data
 
 
-def dumps_pyarrow(obj):
+def dumps_data(obj):
     """
     Serialize an object.
     Returns:
         Implementation-dependent bytes-like object
     """
-    return pa.serialize(obj).to_buffer()
+    return pickle.dumps(obj)
 
 
 def folder2lmdb(infos, dpath, name="train2017", workers=32, write_frequency=1000):
@@ -72,7 +64,7 @@ def folder2lmdb(infos, dpath, name="train2017", workers=32, write_frequency=1000
 
     txn = db.begin(write=True)
     for idx, image in enumerate(data_loader):
-        txn.put(u'{}'.format(idx).encode('ascii'), dumps_pyarrow(image[0]))
+        txn.put(u'{}'.format(idx).encode('ascii'), dumps_data(image[0]))
         if idx % write_frequency == 0:
             print("[%d/%d]" % (idx, len(data_loader)))
             txn.commit()
@@ -82,8 +74,8 @@ def folder2lmdb(infos, dpath, name="train2017", workers=32, write_frequency=1000
     txn.commit()
     keys = [u'{}'.format(k).encode('ascii') for k in range(idx + 1)]
     with db.begin(write=True) as txn:
-        txn.put(b'__keys__', dumps_pyarrow(keys))
-        txn.put(b'__len__', dumps_pyarrow(len(keys)))
+        txn.put(b'__keys__', dumps_data(keys))
+        txn.put(b'__len__', dumps_data(len(keys)))
 
     print("Flushing database ...")
     db.sync()
