@@ -30,13 +30,12 @@ For your convenience, we provide the following pre-trained models on COCO or Ima
 
 pre-train method | pre-train dataset | backbone | #epoch | training time | VOC det | VOC seg | Link
 --- |:---:|:---:|:---:|:---:|:---:|:---:|:---:
-Supervised | ImageNet | ResNet-50 | - | - | 54.2 | 67.7| [download](https://cloudstor.aarnet.edu.au/plus/s/W2FST2pxKrC6HWp/download)
-MoCo-v2 | COCO | ResNet-50 | 800 | 1.0d | 54.7 | 64.5 | [download]()
-DenseCL | COCO | ResNet-50 | 800 | 1.0d | 56.7 | 67.5 | [download](https://cloudstor.aarnet.edu.au/plus/s/W5oDyYB218xz625/download)
-DenseCL | COCO | ResNet-50 | 1600 | 2.0d | 57.2 | 68.0 | [download](https://cloudstor.aarnet.edu.au/plus/s/3GapXiWuVAzdKwJ/download)
-MoCo-v2 | ImageNet | ResNet-50 | 200 | 2.3d | 57.0 | 67.5 | [download]()
-DenseCL | ImageNet | ResNet-50 | 200 | 2.3d | 58.7 | 69.4 | [download](https://cloudstor.aarnet.edu.au/plus/s/hdAg5RYm8NNM2QP/download)
-DenseCL | ImageNet | ResNet-101 | 200 | 4.3d | 61.3 | 74.1 | [download](https://cloudstor.aarnet.edu.au/plus/s/4sugyvuBOiMXXnC/download)
+MoCo-v2 | COCO | ResNet-50 | 800 | 1.0d | 54.7 | 64.5 | 
+DenseCL | COCO | ResNet-50 | 800 | 1.0d | 56.7 | 67.5 | [download](https://huggingface.co/xinlongwang/DenseCL/resolve/main/densecl_r50_coco_800ep.pth?download=true)
+DenseCL | COCO | ResNet-50 | 1600 | 2.0d | 57.2 | 68.0 | [download](https://huggingface.co/xinlongwang/DenseCL/resolve/main/densecl_r50_coco_1600ep.pth?download=true)
+MoCo-v2 | ImageNet | ResNet-50 | 200 | 2.3d | 57.0 | 67.5 | 
+DenseCL | ImageNet | ResNet-50 | 200 | 2.3d | 58.7 | 69.4 | [download](https://huggingface.co/xinlongwang/DenseCL/resolve/main/densecl_r50_imagenet_200ep.pth?download=true)
+DenseCL | ImageNet | ResNet-101 | 200 | 4.3d | 61.3 | 74.1 | [download](https://huggingface.co/xinlongwang/DenseCL/resolve/main/densecl_r101_imagenet_200ep.pth?download=true)
 
 **Note:** 
 - The metrics for VOC det and seg are AP (COCO-style) and mIoU. The results are averaged over 5 trials.
